@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugene Ratshipa - Creative Software Engineer & Web Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Tailwind Customizations
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6', // Blue accent (keep)
+                        'primary-dark': '#1d4ed8',
+                        'secondary': '#10b981', // Green accent (keep for contrast)
+                        'secondary-accent': '#8b5cf6', // New Purple Accent
+                        'secondary-accent-dark': '#6d28d9',
+                        'dark-bg': '#111827',
+                        'card-bg': '#1f2937',
+                        'light-text': '#f3f4f6',
+                        'medium-text': '#9ca3af',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-bg text-light-text font-['Inter']">
+
+    <canvas id="three-canvas"></canvas>
+
+    <nav id="main-nav" class="bg-dark-bg/70 backdrop-blur-lg sticky top-0 z-50 shadow-lg border-b border-gray-800/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-gradient brand">Personal Portfolio</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" data-section="about" class="nav-link text-medium-text hover:text-light-text">About</a>
+                <a href="#skills" data-section="skills" class="nav-link text-medium-text hover:text-light-text">Skills</a>
+                <a href="#projects" data-section="projects" class="nav-link text-medium-text hover:text-light-text">Projects</a>
+                <a href="#articles" data-section="articles" class="nav-link text-medium-text hover:text-light-text">Articles</a>
+                <a href="#contact" data-section="contact" class="bg-primary text-white px-5 py-2 rounded-md hover:bg-primary-dark transition duration-300 glossy-hover contact-btn">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-light-text focus:outline-none text-2xl p-2">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-sm shadow-lg md:hidden z-40 border-t border-gray-800/50">
+             <div class="flex flex-col items-center space-y-5 py-8">
+                <a href="#about" data-section="about" class="nav-link text-lg text-medium-text hover:text-light-text block w-full text-center py-2 mobile-menu-link">About</a>
+                <a href="#skills" data-section="skills" class="nav-link text-lg text-medium-text hover:text-light-text block w-full text-center py-2 mobile-menu-link">Skills</a>
+                <a href="#projects" data-section="projects" class="nav-link text-lg text-medium-text hover:text-light-text block w-full text-center py-2 mobile-menu-link">Projects</a>
+                <a href="#articles" data-section="articles" class="nav-link text-lg text-medium-text hover:text-light-text block w-full text-center py-2 mobile-menu-link">Articles</a>
+                <a href="#contact" data-section="contact" class="bg-primary text-white px-8 py-3 rounded-md hover:bg-primary-dark transition duration-300 glossy-hover w-3/4 text-center mobile-menu-link mt-4">Contact</a>
+             </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden py-24 px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-5 leading-tight headline-reveal">
+                <span>Kealeboga Eugene Ratshipa</span>
+            </h1>
+            <p class="text-2xl md:text-3xl font-semibold text-medium-text mb-8 animate-fade-in-up" style="animation-delay: 0.6s;">
+                <span class="text-gradient">Software Engineer</span> & <span class="text-gradient">Web Designer</span>
+            </p>
+            <p class="text-lg text-light-text max-w-2xl mx-auto mb-12 animate-fade-in-up" style="animation-delay: 0.8s;">
+                Entrepreneurship isn’t a career move — it’s the mission. I’m here to turn ideas into platforms, brands into experiences, and visions into reality.
+            </p>
+            <div class="space-x-5 animate-fade-in-up" style="animation-delay: 1s;">
+                <a href="#projects" class="bg-primary text-white px-7 py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 glossy-hover text-lg inline-block shadow-lg">View My Work</a>
+                <a href="#contact" class="bg-secondary-accent text-white px-7 py-3 rounded-lg font-semibold hover:bg-secondary-accent-dark transition duration-300 glossy-hover text-lg inline-block shadow-lg">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl font-bold mb-8 text-gradient animate-on-scroll" data-animation="animate-fade-in-up">About Me</h2>
+            <img src="avatar.jpeg" alt="Your Name" class="w-40 h-40 rounded-full mx-auto mb-10 border-4 border-secondary-accent shadow-xl animate-on-scroll" data-animation="animate-fade-in" style="filter: saturate(1.2);">
+            <p class="text-xl text-light-text mb-6 leading-relaxed animate-on-scroll" data-animation="animate-fade-in-up" data-delay="100">
+                Hello! I'm Kealeboga Eugene Ratshipa, a Computer Science graduate specializing in the fusion of robust <strong class="font-semibold text-primary">Software Engineering</strong> and captivating <strong class="font-semibold text-secondary-accent">Web Design</strong>. I thrive on transforming complex problems into intuitive and beautiful digital experiences.
+            </p>
+            <p class="text-lg text-medium-text leading-relaxed animate-on-scroll" data-animation="animate-fade-in-up" data-delay="200">
+                I'm a Computer Science graduate, entrepreneur at heart, and builder by nature. I specialize in crafting smart digital solutions — from scalable websites to full-fledged eCommerce ecosystems — blending technical precision with business strategy. With a deep passion for technology, innovation, and brand development, I turn complex problems into simple, powerful experiences. Whether coding a new platform, launching a brand, or scaling an idea into reality, I bring creativity, technical expertise, and a relentless drive for excellence to every project. I don’t just build websites — I build businesses, movements, and digital legacies.
+            </p>
+             <div class="mt-12 animate-on-scroll" data-animation="animate-fade-in-up" data-delay="300">
+                 <a href="Kealeboga Ratshipa - Resume(2025).pdf" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-secondary/80 font-medium inline-flex items-center text-lg transition duration-300 group">
+                     Download My Resume <i class="fas fa-download ml-2 transform group-hover:translate-y-0.5 transition-transform"></i>
+                 </a>
+             </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-16 text-gradient animate-on-scroll" data-animation="animate-fade-in-up">Core Competencies</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                <div class="skill-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700/50 glossy-hover animate-on-scroll" data-animation="animate-fade-in-up">
+                    <i class="fas fa-code text-6xl text-primary mb-6 inline-block"></i>
+                    <h3 class="text-xl font-semibold mb-3">Frontend</h3>
+                    <ul class="text-medium-text space-y-1.5 text-sm">
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (ESNext)</li>
+                        <li>React / Next.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>Web Performance</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700/50 glossy-hover animate-on-scroll" data-animation="animate-fade-in-up" data-delay="100">
+                    <i class="fas fa-cogs text-6xl text-secondary mb-6 inline-block"></i>
+                    <h3 class="text-xl font-semibold mb-3">Backend</h3>
+                    <ul class="text-medium-text space-y-1.5 text-sm">
+                        <li>Node.js & Express</li>
+                        <li>Smart Contracts</li>
+                        <li>REST & GraphQL APIs</li>
+                        <li>Microservices Basics</li>
+                        <li>Authentication</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700/50 glossy-hover animate-on-scroll" data-animation="animate-fade-in-up" data-delay="200">
+                    <i class="fas fa-database text-6xl text-primary mb-6 inline-block"></i>
+                    <h3 class="text-xl font-semibold mb-3">Databases</h3>
+                    <ul class="text-medium-text space-y-1.5 text-sm">
+                        <li>ORM/ODM (Prisma)</li>
+                        <li>Firebase Suite</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700/50 glossy-hover animate-on-scroll" data-animation="animate-fade-in-up" data-delay="300">
+                    <i class="fas fa-cloud text-6xl text-secondary mb-6 inline-block"></i>
+                    <h3 class="text-xl font-semibold mb-3">Tools & DevOps</h3>
+                    <ul class="text-medium-text space-y-1.5 text-sm">
+                        <li>Git & GitHub Actions</li>
+                        <li>Docker</li>
+                        <li>Vercel / Netlify</li>
+                        <li>Testing (Jest)</li>
+                        <li>Agile/Scrum</li>
+                    </ul>
+                </div>
+                 <div class="skill-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700/50 glossy-hover animate-on-scroll" data-animation="animate-fade-in-up" data-delay="400">
+                    <i class="fas fa-drafting-compass text-6xl text-secondary-accent mb-6 inline-block"></i>
+                    <h3 class="text-xl font-semibold mb-3">Design & UI/UX</h3>
+                    <ul class="text-medium-text space-y-1.5 text-sm">
+                        <li>UI/UX Principles</li>
+                        <li>Responsive Design</li>
+                        <li>Figma / Prototyping</li>
+                        <li>Design Systems</li>
+                        <li>Accessibility (WCAG)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-16 text-center text-gradient animate-on-scroll" data-animation="animate-fade-in-up">Selected Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="project-card bg-dark-bg rounded-lg shadow-xl group animate-on-scroll" data-animation="animate-fade-in-up">
+                    <img src="authentico-landing.png" alt="Project 1 Screenshot" class="w-full h-64 object-cover">
+                    <div class="overlay">
+                        <div class="overlay-content">
+                            <h3 class="text-2xl font-semibold mb-2 text-light-text">Authentico</h3>
+                            <p class="text-medium-text mb-3 text-sm">Official Document Verification</p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="inline-block bg-primary/20 text-primary text-xs font-semibold px-2 py-0.5 rounded">NextJS</span>
+                                <span class="inline-block bg-secondary-accent/20 text-secondary-accent text-xs font-semibold px-2 py-0.5 rounded">Thirdweb</span>
+                                <span class="inline-block bg-gray-600/50 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Firebase</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="https://authentico-frontend.onrender.com" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center transition duration-300">Live Demo <i class="fas fa-external-link-alt ml-1"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-light-text transition duration-300"><i class="fab fa-github text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-dark-bg rounded-lg shadow-xl group animate-on-scroll" data-animation="animate-fade-in-up" data-delay="150">
+                    <img src="ngoma-landing.png" alt="Project 2 Screenshot" class="w-full h-64 object-cover">
+                     <div class="overlay">
+                        <div class="overlay-content">
+                            <h3 class="text-2xl font-semibold mb-2 text-light-text">Ngoma</h3>
+                            <p class="text-medium-text mb-3 text-sm">Music streaming platform powered by blockchain</p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="inline-block bg-primary/20 text-primary text-xs font-semibold px-2 py-0.5 rounded">NextJS</span>
+                                <span class="inline-block bg-secondary-accent/20 text-secondary-accent text-xs font-semibold px-2 py-0.5 rounded">PostgreSQL</span>
+                                <span class="inline-block bg-gray-600/50 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">TailwindCSS</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="https://ngoma-prototype.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center transition duration-300">Live Demo <i class="fas fa-external-link-alt ml-1"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-light-text transition duration-300"><i class="fab fa-github text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-dark-bg rounded-lg shadow-xl group animate-on-scroll" data-animation="animate-fade-in-up" data-delay="300">
+                    <img src="fund-forward-landing.png" alt="Project 3 Screenshot" class="w-full h-64 object-cover">
+                     <div class="overlay">
+                        <div class="overlay-content">
+                            <h3 class="text-2xl font-semibold mb-2 text-light-text">Fund Forward</h3>
+                            <p class="text-medium-text mb-3 text-sm">Final year project based on crowdfunding and voting</p>
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <span class="inline-block bg-primary/20 text-primary text-xs font-semibold px-2 py-0.5 rounded">Next.js</span>
+                                <span class="inline-block bg-secondary-accent/20 text-secondary-accent text-xs font-semibold px-2 py-0.5 rounded">PostgreSQL</span>
+                                <span class="inline-block bg-gray-600/50 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Figma</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="https://fund-forward.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center transition duration-300">Live Demo <i class="fas fa-external-link-alt ml-1"></i></a>
+                                <a href="https://github.com/TheDonCipher/client" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-light-text transition duration-300"><i class="fab fa-github text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl font-bold mb-16 text-center text-gradient animate-on-scroll" data-animation="animate-fade-in-up">Insights & Articles</h2>
+            <div class="space-y-12">
+                <div class="article-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-700/50 animate-on-scroll" data-animation="animate-fade-in-left">
+                    <p class="text-sm text-secondary-accent mb-2 font-medium">AI | March 5 2024</p>
+                    <h3 class="text-2xl font-semibold mb-3 text-light-text hover:text-primary transition duration-300"><a href="https://www.linkedin.com/pulse/achieving-nuanced-storytelling-large-language-models-ratshipa-il6jf">Achieving Nuanced Storytelling with Large Language Models: Insights from the Prompt Engineering Journey</a></h3>
+                    <p class="text-medium-text mb-5 leading-relaxed">The landscape of storytelling is constantly shifting, and a fascinating new player has entered the scene: Large Language Models (LLMs)....</p>
+                    <a href="https://www.linkedin.com/pulse/achieving-nuanced-storytelling-large-language-models-ratshipa-il6jf" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 font-semibold inline-flex items-center group transition duration-300">Read More <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                <div class="article-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-700/50 animate-on-scroll" data-animation="animate-fade-in-right" data-delay="100">
+                     <p class="text-sm text-secondary-accent mb-2 font-medium">Quantum Computing | July 26 2023</p>
+                    <h3 class="text-2xl font-semibold mb-3 text-light-text hover:text-primary transition duration-300"><a href="https://www.linkedin.com/pulse/quantum-computing-next-frontier-nature-inspired-kealeboga-ratshipa">Quantum Computing: The Next Frontier in Nature-Inspired Software Engineering</a></h3>
+                    <p class="text-medium-text mb-5 leading-relaxed">The rapid evolution of quantum computing represents an exciting new frontier for software engineers...</p>
+                    <a href="https://www.linkedin.com/pulse/quantum-computing-next-frontier-nature-inspired-kealeboga-ratshipa" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 font-semibold inline-flex items-center group transition duration-300">Read More <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+                 <div class="article-card bg-card-bg/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-700/50 animate-on-scroll" data-animation="animate-fade-in-left" data-delay="200">
+                     <p class="text-sm text-secondary-accent mb-2 font-medium">Finance | July 2 2023</p>
+                    <h3 class="text-2xl font-semibold mb-3 text-light-text hover:text-primary transition duration-300"><a href="https://www.linkedin.com/pulse/federal-reserve-fednow-cryptocurrency-developments-kealeboga-ratshipa">The Federal Reserve, FedNow, and Cryptocurrency Developments: A Comprehensive Overview</a></h3>
+                    <p class="text-medium-text mb-5 leading-relaxed">The Federal Reserve System, also known as the Fed, is the central banking system of the United States. ...</p>
+                    <a href="https://www.linkedin.com/pulse/federal-reserve-fednow-cryptocurrency-developments-kealeboga-ratshipa" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 font-semibold inline-flex items-center group transition duration-300">Read More <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto max-w-3xl text-center">
+            <h2 class="text-4xl font-bold mb-8 text-gradient animate-on-scroll" data-animation="animate-fade-in-up">Let's Connect</h2>
+            <p class="text-lg text-medium-text mb-12 animate-on-scroll" data-animation="animate-fade-in-up" data-delay="100">Have a project in mind, a question, or just want to say hi? I'd love to hear from you!</p>
+
+            <form action="#" method="POST" class="text-left space-y-6 animate-on-scroll" data-animation="animate-fade-in-up" data-delay="200">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-light-text mb-2">Name</label>
+                    <input type="text" id="name" name="name" required class="w-full px-5 py-3 bg-dark-bg/70 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-light-text placeholder-gray-500 transition duration-300 backdrop-blur-sm" placeholder="Your Name">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-light-text mb-2">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full px-5 py-3 bg-dark-bg/70 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-light-text placeholder-gray-500 transition duration-300 backdrop-blur-sm" placeholder="your.email@example.com">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-light-text mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" required class="w-full px-5 py-3 bg-dark-bg/70 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-light-text placeholder-gray-500 transition duration-300 backdrop-blur-sm" placeholder="Your message..."></textarea>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="bg-gradient-to-r from-primary to-secondary-accent text-white px-12 py-4 rounded-lg font-semibold hover:opacity-90 transition duration-300 glossy-hover text-lg shadow-lg">Send Message</button>
+                </div>
+            </form>
+
+            <div class="mt-20 animate-on-scroll" data-animation="animate-fade-in-up" data-delay="300">
+                <p class="text-medium-text mb-6">Find me on:</p>
+                <div class="flex justify-center space-x-10">
+                    <a href="https://www.linkedin.com/in/kealeboga-ratshipa-442abb1b2/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition duration-300 text-4xl" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/TheDonCipher" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-light-text transition duration-300 text-4xl" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:kealebogaratshipa@gmail.com" class="text-gray-400 hover:text-secondary-accent transition duration-300 text-4xl" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 px-6 text-center border-t border-gray-800/50 mt-10">
+        <div class="container mx-auto">
+            <div class="flex justify-center space-x-8 mb-6">
+                 <a href="https://www.linkedin.com/in/kealeboga-ratshipa-442abb1b2/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-primary transition duration-300" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                 </a>
+                 <a href="https://github.com/TheDonCipher" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-light-text transition duration-300" aria-label="GitHub">
+                    <i class="fab fa-github text-2xl"></i>
+                 </a>
+                 <a href="mailto:kealebogaratshipa@gmail.com" class="text-gray-500 hover:text-secondary-accent transition duration-300" aria-label="Email">
+                    <i class="fas fa-envelope text-2xl"></i>
+                 </a>
+            </div>
+            <p class="text-medium-text text-sm">&copy; 2025 Kealeboga Eugene Ratshipa. All rights reserved.</p>
+            <p class="text-xs text-gray-600 mt-3">Designed & Built with <i class="fas fa-heart text-red-500 px-1"></i> Google Gemini</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
