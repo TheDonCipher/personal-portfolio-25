@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Eugene Ratshipa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Tailwind Customizations
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6', // Blue accent (keep)
+                        'primary-dark': '#1d4ed8',
+                        'secondary': '#10b981', // Green accent (keep for contrast)
+                        'secondary-accent': '#8b5cf6', // New Purple Accent
+                        'secondary-accent-dark': '#6d28d9',
+                        'dark-bg': '#111827',
+                        'card-bg': '#1f2937',
+                        'light-text': '#f3f4f6',
+                        'medium-text': '#9ca3af',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-bg text-light-text font-['Inter']">
+    <div class="min-h-screen flex items-center justify-center px-6 py-12">
+        <div class="text-center max-w-lg">
+            <div class="text-6xl mb-6 text-secondary-accent">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="text-4xl font-bold mb-4">Thank You!</h1>
+            <p class="text-xl text-medium-text mb-8">Your message has been sent successfully. I'll get back to you as soon as possible.</p>
+            <a href="index.html" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Homepage
+            </a>
+        </div>
+    </div>
+</body>
+</html>
