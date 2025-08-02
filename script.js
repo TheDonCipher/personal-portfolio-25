@@ -83,13 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('three-canvas');
     if (canvas && typeof THREE !== 'undefined') {
         let scene, camera, renderer, particles, particleMaterial, mouseX = 0, mouseY = 0;
-        const particleCount = 2000; // Increased particle count slightly
+        const particleCount = 3500; // Further increased particle count
 
         function initThree() {
             try {
                 scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1200); // Increased far plane
-                camera.position.z = 70; // Start slightly further back
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000); // Even further far plane
+                camera.position.z = 120; // Start further back for a grander scale
 
                 renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
                 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -97,44 +97,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const particleGeometry = new THREE.BufferGeometry();
                 const positions = new Float32Array(particleCount * 3);
-                const colors = new Float32Array(particleCount * 3); // For color variation
-                const colorPrimary = new THREE.Color(getComputedStyle(root).getPropertyValue('--primary-color').trim());
-                const colorAccent = new THREE.Color(getComputedStyle(root).getPropertyValue('--secondary-accent').trim());
+                const colors = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+
+                const baseColors = [
+                    new THREE.Color(getComputedStyle(root).getPropertyValue('--primary-color').trim()),
+                    new THREE.Color(getComputedStyle(root).getPropertyValue('--secondary-accent').trim()),
+                    new THREE.Color('#10b981'), // Secondary Green
+                    new THREE.Color('#facc15'),  // Yellow Accent
+                    new THREE.Color('#f97316'),  // Orange Accent
+                    new THREE.Color('#ec4899'),   // Pink Accent
+                    new THREE.Color('#60a5fa'),   // Light Blue
+                    new THREE.Color('#a78bfa')    // Light Purple
+                ];
 
                 for (let i = 0; i < particleCount; i++) {
                     const i3 = i * 3;
-                    // Position particles in a sphere-like distribution
-                    const radius = 150 + Math.random() * 150; // Spread out more
+                    const radius = 300 + Math.random() * 400; // Even wider distribution
                     const phi = Math.acos(-1 + (2 * Math.random()));
                     const theta = Math.sqrt(particleCount * Math.PI) * phi;
 
                     positions[i3] = radius * Math.cos(theta) * Math.sin(phi);
                     positions[i3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
-                    positions[i3 + 2] = radius * Math.cos(phi) + (Math.random() - 0.5) * 100; // Add depth variation
+                    positions[i3 + 2] = radius * Math.cos(phi) + (Math.random() - 0.5) * 250;
 
-                    // Assign colors (mix between primary and accent)
-                    const color = Math.random() > 0.5 ? colorPrimary : colorAccent;
+                    const color = baseColors[Math.floor(Math.random() * baseColors.length)];
                     colors[i3] = color.r;
                     colors[i3 + 1] = color.g;
                     colors[i3 + 2] = color.b;
+
+                    sizes[i] = Math.random() * 2.5 + 1.0; // Increased size variation
                 }
+
                 particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-                particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3)); // Add color attribute
+                particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
                 particleMaterial = new THREE.PointsMaterial({
-                    size: 0.4, // Slightly larger particles
-                    vertexColors: true, // Use vertex colors
+                    size: 0.7, // Larger base size
+                    vertexColors: true,
                     transparent: true,
-                    opacity: 0.8,
+                    opacity: 0.95, // Higher base opacity
                     blending: THREE.AdditiveBlending,
-                    sizeAttenuation: true, // Particles smaller further away
-                    depthWrite: false // Prevents particles obscuring each other weirdly
+                    sizeAttenuation: true,
+                    depthWrite: false
                 });
 
                 particles = new THREE.Points(particleGeometry, particleMaterial);
                 scene.add(particles);
 
-                // Mouse move listener
                 document.addEventListener('mousemove', onDocumentMouseMove, false);
                 window.addEventListener('resize', onWindowResize, false);
 
@@ -155,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function onDocumentMouseMove(event) {
-            // Normalize mouse position (-1 to +1)
             mouseX = (event.clientX / window.innerWidth) * 2 - 1;
             mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
         }
@@ -167,15 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
             const elapsedTime = clock.getElapsedTime();
 
-            // Rotate particles slowly
-            particles.rotation.y = elapsedTime * 0.03;
-            particles.rotation.x = elapsedTime * 0.015;
+            particles.rotation.y = elapsedTime * 0.01;
+            particles.rotation.x = elapsedTime * 0.002;
 
-            // Move camera slightly based on mouse position for parallax effect
-            // Dampen the movement for smoother effect
-            camera.position.x += (mouseX * 5 - camera.position.x) * 0.02; // Adjust multiplier (5) for sensitivity
-            camera.position.y += (mouseY * 5 - camera.position.y) * 0.02;
-            camera.lookAt(scene.position); // Keep camera focused on the center
+            // More dramatic twinkle
+            particles.material.opacity = Math.sin(elapsedTime * 2.5) * 0.3 + 0.7;
+
+            camera.position.x += (mouseX * 2 - camera.position.x) * 0.01;
+            camera.position.y += (mouseY * 2 - camera.position.y) * 0.01;
+            camera.lookAt(scene.position);
 
             renderer.render(scene, camera);
         }
@@ -183,7 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
         initThree();
     } else {
         console.warn("Three.js library not found or canvas element missing.");
-        // Add fallback background if canvas fails
         document.body.style.backgroundImage = 'linear-gradient(to bottom, #111827, #1f2937)';
     }
 });
+
+
+

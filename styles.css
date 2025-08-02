@@ -53,6 +53,12 @@ body {
     clip-path: inset(0 0 0 0);
   }
 }
+/* Twinkle animation for stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
 .headline-reveal span {
   display: inline-block; /* Needed for clip-path */
   animation: reveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -197,6 +203,10 @@ nav a:hover {
   position: relative; /* Ensure content is above canvas */
   z-index: 1;
   background: transparent; /* Let canvas show through */
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 /* Add subtle gradient overlay to sections on top of canvas */
 #about,
@@ -277,9 +287,21 @@ footer {
 }
 
 /* Improved Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .headline-reveal span {
     font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 2.25rem !important;
   }
 
   .project-card {
@@ -296,8 +318,8 @@ footer {
 
   /* Ensure proper spacing on mobile */
   section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   /* Improve form elements on mobile */
