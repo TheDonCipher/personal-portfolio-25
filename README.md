@@ -19,7 +19,7 @@ This is the repository for my personal portfolio website. It showcases my skills
 
 This portfolio highlights the following projects:
 
-1.  **Authentico:** Official document verfication
+1.  **Authentico:** Official document verification
 2.  **Fund-Forward:** Crowdfunding and voting
 3.  **Ngoma:** NFT Music streaming
 
