@@ -1,54 +1,58 @@
-# Personal Portfolio Website
+# Kealeboga Ratshipa's Personal Portfolio
 
-A modern, responsive personal portfolio website built with HTML, CSS, JavaScript, and TailwindCSS.
+This is the repository for my personal portfolio website. It showcases my skills, projects, and provides a way to get in touch with me. The website is designed to be modern, responsive, and interactive.
+
+## Live Demo
+
+[You can view the live website here](https://personal-portfolio-25-three.vercel.app/)
 
 ## Features
 
-- Responsive design that works on all devices
-- Interactive 3D background using Three.js
-- Smooth scroll animations
-- Mobile-friendly navigation
-- Project showcase with hover effects
-- Contact form
-- Modern UI with subtle animations
+-   **Modern & Responsive Design:** The website is fully responsive and looks great on all devices, from mobile phones to desktop computers.
+-   **Interactive Background:** A subtle, interactive 3D background created with Three.js to engage visitors.
+-   **Project Showcase:** A dedicated section to display my recent projects with images, descriptions, and links.
+-   **About Me:** A section with my picture and a brief introduction.
+-   **Resume Download:** A direct link to download my latest resume.
+-   **Contact Information:** Easy access to my social media profiles and a contact form.
 
-## Running Locally
+## Projects Featured
 
-### Option 1: Using Node.js Server
+This portfolio highlights the following projects:
 
-1. Make sure you have [Node.js](https://nodejs.org/) installed
-2. Clone or download this repository
-3. Open a terminal in the project directory
-4. Run the server:
-   ```
-   node server.js
-   ```
-5. Open your browser and navigate to `http://localhost:5500`
-
-### Option 2: Using Live Server Extension (VS Code)
-
-1. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for VS Code
-2. Open the project folder in VS Code
-3. Right-click on `index.html` and select "Open with Live Server"
-4. The site will open in your default browser
-
-## Customization
-
-- Replace "Your Name" with your actual name throughout the HTML
-- Update the project images, descriptions, and links
-- Add your own resume for download
-- Update the contact form action to point to your backend
-- Add your social media links
+1.  **Authentico:** Official document verfication
+2.  **Fund-Forward:** Crowdfunding and voting
+3.  **Ngoma:** NFT Music streaming
 
 ## Technologies Used
 
-- HTML5
-- CSS3
-- JavaScript
-- [TailwindCSS](https://tailwindcss.com/)
-- [Three.js](https://threejs.org/)
-- [Font Awesome](https://fontawesome.com/)
-- [Google Fonts (Inter)](https://fonts.google.com/specimen/Inter)
+The portfolio is built with a modern tech stack:
+
+-   HTML5
+-   CSS3
+-   JavaScript
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [Three.js](https://threejs.org/)
+-   [Font Awesome](https://fontawesome.com/)
+-   [Google Fonts (Inter)](https://fonts.google.com/specimen/Inter)
+
+## Running the Project Locally
+
+### Option 1: Using Node.js Server
+
+1.  Make sure you have [Node.js](https://nodejs.org/) installed.
+2.  Clone this repository: `git clone https://github.com/your-username/personal-portfolio-25.git`
+3.  Navigate to the project directory: `cd personal-portfolio-25`
+4.  Run the server:
+    ```bash
+    node server.js
+    ```
+5.  Open your browser and go to `http://localhost:5500`.
+
+### Option 2: Using Live Server (VS Code)
+
+1.  Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for VS Code.
+2.  Open the project folder in VS Code.
+3.  Right-click on `index.html` and select "Open with Live Server".
 
 ## License
 
